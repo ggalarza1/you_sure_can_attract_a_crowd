@@ -7,7 +7,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/validation/TimedCrowdsale.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/crowdsale/distribution/RefundablePostDeliveryCrowdsale.sol";
 
-contract PupperCoinSale is Crowdsale, CappedCrowdsale, TimedCrowdsale, RefundableCrowdsale, MintedCrowdsale {
+contract PupperCoinSale is Crowdsale, CappedCrowdsale, TimedCrowdsale, RefundableCrowdsale, MintedCrowdsale, RefundablePostDeliveryCrowdsale {
 
     constructor(
         uint rate,
@@ -49,7 +49,7 @@ contract PupperCoinSaleDeployer {
         // @TODO: create the PupperCoinSale and tell it about the token, set the goal, and set the open and close times to now and now + 24 weeks.
         
         // create the ArcadeTokenSale and tell it about the token
-        PupperCoinSale token_sale = new PupperCoinSale(1, token, wallet, goal, now, now + 24 weeks);
+        PupperCoinSale token_sale = new PupperCoinSale(1, token, wallet, goal, now, now + 5 minutes);
         token_sale_address = address(token_sale);
         
         
